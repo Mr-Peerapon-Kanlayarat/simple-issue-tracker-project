@@ -1,0 +1,8 @@
+postgresql://
+data_db_8uei_user
+:
+dAaIS0sD00QseRIsIpglcxudH7YnxNfB
+@
+dpg-d27qj08gjchc738jggc0-a.singapore-postgres.render.com
+/
+data_db_8uei
