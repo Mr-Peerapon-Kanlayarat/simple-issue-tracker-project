@@ -6,12 +6,23 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+let tokenVerify = require('./middlewares/tokenHandle');
+
 let sequelize = require('./middlewares/database');
+const User = require('./models/user');
+const Project = require('./models/project');
+const Issue = require('./models/issue');
 
 async function connectToDatabase() {
   try {
     await sequelize.authenticate();
     console.log('Database connection has been established successfully.');
+
+    console.log(User === sequelize.models.users);
+    console.log(Project === sequelize.models.projects);
+    console.log(Issue === sequelize.models.issues);
+
+    sequelize.sync()
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }
@@ -28,6 +39,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/users', usersRouter);
 
 module.exports = app;
