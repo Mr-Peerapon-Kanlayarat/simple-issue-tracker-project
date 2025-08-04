@@ -6,6 +6,7 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 let projectsRouter = require('./routes/projects');
+let issuesRouter = require('./routes/issues');
 
 let tokenVerify = require('./middlewares/tokenHandle');
 
@@ -42,5 +43,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/projects', [tokenVerify], projectsRouter);
+app.use('/api/issues', [tokenVerify], issuesRouter);
 
 module.exports = app;
