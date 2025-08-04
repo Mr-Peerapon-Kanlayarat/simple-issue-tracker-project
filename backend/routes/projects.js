@@ -2,20 +2,22 @@ var express = require('express');
 var router = express.Router();
 let Project = require('../models/project');
 let User = require('../models/user');
+let Issue = require('../models/issue');
 
 //สร้างโปรเจกต์ใหม่(ต้องมีการยืนยันตัวตน)
 router.post('/', async (req, res) => {
     try {
-        if (!req.body.title || !req.body.description) {
+        const data = req.body;
+        if (!data.title || !data.description) {
             throw new Error("Title and description are required.");
         }
         if (!req.user || !req.user.id) {
             throw new Error("User not authenticated.");
         }
         let project = await Project.create({
-            title: req.body.title,
-            description: req.body.description,
-            userId: req.user.id 
+            title: data.title,
+            description: data.description,
+            userId: req.user.id
         });
         res.status(201).json({
             success: true,
@@ -101,6 +103,73 @@ router.delete('/:projectId', async (req, res) => {
         res.status(200).json({
             success: true,
             message: "Project deleted successfully."
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        });
+    }
+});
+
+//สร้าง issue ใหม่ในโปรเจกต์
+router.post('/:projectId/issues', async (req, res) => {
+    try {
+        const data = req.body;
+        if (!req.params.projectId) {
+            throw new Error("Project ID is required.");
+        }
+        if (!data.title || !data.description) {
+            throw new Error("Title and description are required.");
+        }
+        if (!req.user || !req.user.id) {
+            throw new Error("User not authenticated.");
+        }
+
+        let project = await Project.findByPk(req.params.projectId);
+        if (!project) {
+            throw new Error("Project not found.");
+        }
+        
+        let issue = await Issue.create({
+            title: data.title,
+            description: data.description,
+            projectId: project.id,
+        });
+        
+        res.status(201).json({
+            success: true,
+            message: "Issue created successfully.",
+            data: issue
+        });
+    } catch (error) {
+        res.status(400).json({
+            success: false,
+            message: error.message
+        });
+    }
+});
+
+//ดึงข้อมูล issue ทั้งหมดในโปรเจกต์
+router.get('/:projectId/issues', async (req, res) => {
+    try {
+        if (!req.params.projectId) {
+            throw new Error("Project ID is required.");
+        }
+        if (!req.user || !req.user.id) {
+            throw new Error("User not authenticated.");
+        }
+        let projectId = req.params.projectId;
+        let issues = await Issue.findAll({
+            where: { projectId: projectId },
+            include: [{ model: Project, attributes: ['title'] }]
+        });
+        if (!issues.length) {
+            throw new Error("No issues found for this project.");
+        }
+        res.status(200).json({
+            success: true,
+            data: issues
         });
     } catch (error) {
         res.status(400).json({

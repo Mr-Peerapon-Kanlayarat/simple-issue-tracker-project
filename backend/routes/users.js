@@ -6,23 +6,22 @@ let User = require('../models/user');
 
 //ลงทะเบียนผู้ใช้ใหม่
 router.post("/register", async function (req, res, next) {
-  const body = req.body;
-
   try {
+    const data = req.body;
 
-    if (!body.username || !body.email || !body.password) {
+    if (!data.username || !data.email || !data.password) {
       throw new Error("Username, email, and password are required.");
     }
 
-    // if (body.password !== body.confirmPassword) {
+    // if (data.password !== data.confirmPassword) {
     //   throw new Error("Passwords do not match.");
     // }
 
-    let hashedPassword = await bcrypt.hash(body.password, 10);
+    let hashedPassword = await bcrypt.hash(data.password, 10);
 
     let result = await User.create({
-      username: body.username,
-      email: body.email,
+      username: data.username,
+      email: data.email,
       password: hashedPassword,
     });
 
@@ -44,8 +43,8 @@ router.post("/register", async function (req, res, next) {
 //เข้าสู่ระบบ
 router.post('/login', async function (req, res, next) {
     try {
-        let body = req.body
-        if (!body.username || !body.password) {
+        const data = req.body
+        if (!data.username || !data.password) {
             throw new Error("username and password is required.!")
         }
 
@@ -54,14 +53,14 @@ router.post('/login', async function (req, res, next) {
 
         const userData = await User.findOne({
             where: {
-                username: body.username
+                username: data.username
             },
             raw: true
         })
         if (userData !== null) {
             userNameIsValid = true
             if (userData.password) {
-                passWordIsValid = await bcrypt.compare(body.password, userData.password)
+                passWordIsValid = await bcrypt.compare(data.password, userData.password)
             }
         }
         if (!userNameIsValid || !passWordIsValid) {
