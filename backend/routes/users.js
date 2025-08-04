@@ -1,14 +1,8 @@
 var express = require('express');
 var router = express.Router();
-let tokenVerify = require('../middlewares/tokenHandle');
 let jwt = require('jsonwebtoken');
 let bcrypt = require('bcrypt');
 let User = require('../models/user');
-
-/* GET users listing. */
-router.get('/', tokenVerify, function(req, res, next) {
-  res.send('respond with a resource');
-});
 
 //ลงทะเบียนผู้ใช้ใหม่
 router.post("/register", async function (req, res, next) {
@@ -73,7 +67,11 @@ router.post('/login', async function (req, res, next) {
         if (!userNameIsValid || !passWordIsValid) {
             throw new Error("username or password invalid.!")
         }
-        let token = jwt.sign({ username: body.username }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        let token = jwt.sign({ 
+            id: userData.id,
+            username: userData.username,
+            email: userData.email 
+        }, process.env.JWT_SECRET, { expiresIn: "1h" });
         res.status(200).json({
             message: "Login Success.",
             token: token
