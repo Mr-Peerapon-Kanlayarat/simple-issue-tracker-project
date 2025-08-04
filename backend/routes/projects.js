@@ -160,13 +160,21 @@ router.get('/:projectId/issues', async (req, res) => {
             throw new Error("User not authenticated.");
         }
         let projectId = req.params.projectId;
+        
+        // First check if the project exists and belongs to the user
+        let project = await Project.findByPk(projectId);
+        if (!project) {
+            throw new Error("Project not found.");
+        }
+        if (project.userId !== req.user.id) {
+            throw new Error("You are not authorized to view issues for this project.");
+        }
+        
         let issues = await Issue.findAll({
             where: { projectId: projectId },
             include: [{ model: Project, attributes: ['title'] }]
         });
-        if (!issues.length) {
-            throw new Error("No issues found for this project.");
-        }
+        
         res.status(200).json({
             success: true,
             data: issues
