@@ -15,7 +15,6 @@ function ProjectCard({ project, onDeleted }) {
     if (!window.confirm('Delete this project?')) return;
     setDeleting(true);
     try {
-      // Get the token from localStorage
       const token = localStorage.getItem('token');
       
       await fetch(`http://localhost:4000/api/projects/${project.id}`, { 

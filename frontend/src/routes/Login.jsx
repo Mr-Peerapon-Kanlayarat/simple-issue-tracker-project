@@ -26,9 +26,7 @@ function Login() {
       const response = await axios.post("http://localhost:4000/api/users/login", formData);
       
       if (response.data.token) {
-        // Store the token in localStorage
         localStorage.setItem("token", response.data.token);
-        // Redirect to home page
         navigate("/home");
       }
     } catch (error) {

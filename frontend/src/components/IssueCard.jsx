@@ -10,7 +10,6 @@ function IssueCard({ issue, onDeleted }) {
     const newStatus = e.target.value;
     setStatus(newStatus);
     try {
-      // Get the token from localStorage
       const token = localStorage.getItem('token');
       
       await axios.put(`http://localhost:4000/api/issues/${issue.id}`, { status: newStatus }, {

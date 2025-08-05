@@ -4,13 +4,14 @@ import axios from 'axios';
 import "../styles/Home.css";
 import ProjectCard from "../components/ProjectCard";
 import CreateProjectButton from "../components/CreateProjectButton";
+import GoBackButton from "../components/GoBackButton";
+import NavBar from "../components/NavBar";
 
 function Home() {
   const [data, setData] = useState([]);
 
   async function getData() {
   try {
-    // Get the token from localStorage (you'll need to store it there after login)
     const token = localStorage.getItem('token');
     
     const response = await axios.get(`http://localhost:4000/api/projects`, {
@@ -18,7 +19,7 @@ function Home() {
         'Authorization': `Bearer ${token}`
       }
     });
-    setData(response.data.data); // Note: response.data.data since your API returns { success, data }
+    setData(response.data.data);
   } catch (error) {
     console.error('Axios error:', error);
   }
@@ -44,9 +45,13 @@ function Home() {
         <CreateProjectButton onCreated={fetchProjects} />
       </div>
       <div className="project-list">
-        {data.map((project) => (
-          <ProjectCard key={project.id} project={project} onDeleted={handleDeleted} />
-        ))}
+        {Array.isArray(data) && data.length > 0 ? (
+          data.map((project) => (
+            <ProjectCard key={project.id} project={project} onDeleted={handleDeleted} />
+          ))
+        ) : (
+          <p style={{ color: '#999' }}>Your projects list is empty.</p>
+        )}
       </div>
     </div>
   );

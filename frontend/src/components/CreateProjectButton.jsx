@@ -15,7 +15,6 @@ function CreateProjectButton({ onCreated }) {
     setLoading(true);
     setError("");
     try {
-      // Get the token from localStorage
       const token = localStorage.getItem('token');
       
       const res = await axios.post("http://localhost:4000/api/projects", {

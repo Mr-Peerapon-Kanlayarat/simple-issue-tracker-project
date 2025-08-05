@@ -32,13 +32,11 @@ function Register() {
       
       if (response.data.success) {
         setSuccess("Registration successful! Redirecting to login...");
-        // Clear form
         setFormData({
           username: "",
           email: "",
           password: ""
         });
-        // Redirect to login page after 2 seconds
         setTimeout(() => {
           navigate("/");
         }, 2000);
