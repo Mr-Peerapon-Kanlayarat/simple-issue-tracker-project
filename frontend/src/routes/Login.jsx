@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "../styles/Login.css";
 
 function Login() {
@@ -64,7 +64,7 @@ function Login() {
         <button type="submit">Login</button>
       </form>
       <div>
-        <p>Don't have an account? <a href="/register">Create account here</a></p>
+        <p>Don't have an account? <Link to="/register"><a>Create account here</a></Link></p>
       </div>
     </div>
   );
