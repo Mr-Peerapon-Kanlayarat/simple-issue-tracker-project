@@ -7,13 +7,10 @@
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(246,201,14,0.08);
-  transition: background 0.2s, box-shadow 0.2s;
   margin-bottom: 18px;
 }
 .create-project-btn:hover {
   background: #ffe066;
-  box-shadow: 0 4px 16px rgba(246,201,14,0.18);
 }
 
 .modal-overlay {
@@ -42,7 +39,7 @@
 }
 .modal-content input,
 .modal-content textarea {
-  width: 100%;
+  width: 94%;
   padding: 8px 12px;
   border-radius: 6px;
   border: 1px solid #cbd5e1;
@@ -69,7 +66,6 @@
   cursor: pointer;
   background: #f6c90e;
   color: #222;
-  transition: background 0.2s;
 }
 .modal-actions button[type="button"] {
   background: #e2e8f0;

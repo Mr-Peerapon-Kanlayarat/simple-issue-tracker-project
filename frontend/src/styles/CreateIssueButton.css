@@ -7,13 +7,10 @@
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(49,130,206,0.08);
-  transition: background 0.2s, box-shadow 0.2s;
   margin-bottom: 18px;
 }
 .create-issue-btn:hover {
   background: #2563eb;
-  box-shadow: 0 4px 16px rgba(49,130,206,0.18);
 }
 
 .modal-overlay-issue {
@@ -42,7 +39,7 @@
 }
 .modal-content-issue input,
 .modal-content-issue textarea {
-  width: 100%;
+  width: 94%;
   padding: 8px 12px;
   border-radius: 6px;
   border: 1px solid #cbd5e1;
@@ -69,7 +66,6 @@
   cursor: pointer;
   background: #3182ce;
   color: #ffffff;
-  transition: background 0.2s;
 }
 .modal-actions-issue button[type="button"] {
   background: #e2e8f0;

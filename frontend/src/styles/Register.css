@@ -3,11 +3,8 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
-  /* background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); */
   padding: 20px;
-  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
 }
 
 .register h1 {
@@ -68,8 +65,7 @@
 .register button[type="submit"] {
   width: 100%;
   padding: 14px;
-  /* background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); */
-  background: #f5576c;
+  background: #28a745;
   color: white;
   border: none;
   border-radius: 8px;
@@ -82,7 +78,6 @@
 
 .register button[type="submit"]:hover:not(:disabled) {
   transform: translateY(-2px);
-  /* box-shadow: 0 8px 25px rgba(240, 147, 251, 0.3); */
 }
 
 .register button[type="submit"]:active:not(:disabled) {
@@ -104,7 +99,6 @@
   border: 1px solid #fcc;
   font-size: 0.9rem;
   text-align: center;
-  /* animation: slideIn 0.3s ease; */
 }
 
 .register .success-message {
@@ -116,10 +110,8 @@
   border: 1px solid #cfc;
   font-size: 0.9rem;
   text-align: center;
-  /* animation: slideIn 0.3s ease; */
 }
 
-/* Login link section */
 .register > p:last-child {
   margin-top: 2rem;
   text-align: center;
@@ -129,66 +121,16 @@
 }
 
 .register > p:last-child a {
-  color: #fff;
+  color: #007bff;
   text-decoration: none;
   font-weight: 600;
   padding: 8px 16px;
   border-radius: 6px;
-  /* background: rgba(255,255,255,0.2); */
   transition: all 0.3s ease;
   display: inline-block;
   margin-left: 0.5rem;
 }
 
 .register > p:last-child a:hover {
-  /* background: rgba(255,255,255,0.3); */
   transform: translateY(-1px);
-  /* text-shadow: 0 2px 4px rgba(0,0,0,0.2); */
-}
-
-/* Animations */
-/* @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-} */
-
-/* Input validation styles */
-/* .register .form-group input:valid {
-  border-color: #28a745;
-} */
-
-/* .register .form-group input:invalid:not(:placeholder-shown) {
-  border-color: #dc3545;
-} */
-
-/* Focus within form group */
-/* .register .form-group:focus-within label {
-  color: #f093fb;
-} */
-
-/* Responsive Design */
-@media (max-width: 480px) {
-  .register {
-    padding: 10px;
-  }
-  
-  .register h1 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .register form {
-    padding: 2rem 1.5rem;
-  }
-  
-  .register > p:last-child {
-    margin-top: 1.5rem;
-    font-size: 0.9rem;
-  }
 }

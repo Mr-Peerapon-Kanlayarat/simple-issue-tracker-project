@@ -15,12 +15,9 @@
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s, box-shadow 0.2s;
-  box-shadow: 0 1px 4px rgba(229,62,62,0.08);
 }
 .delete-issue-btn:hover:not(:disabled) {
   background: #b91c1c;
-  box-shadow: 0 2px 8px rgba(229,62,62,0.18);
 }
 .delete-issue-btn:disabled {
   opacity: 0.7;
@@ -40,9 +37,7 @@
 }
 
 .issue-card:hover {
-  box-shadow: 0 6px 24px rgba(49,130,206,0.15);
-  transform: translateY(-2px) scale(1.01);
-  background: #b7d2eb;
+  transform: translateY(-2px);
 }
 
 .issue-card h2 {

@@ -91,8 +91,8 @@ function Register() {
           {loading ? "Registering..." : "Register"}
         </button>
       </form>
-      <p style={{ marginTop: '20px' }}>
-        Already have an account? <a href="/" style={{ color: '#007bff', textDecoration: 'none' }}>Login here</a>
+      <p>
+        Already have an account? <a href="/">Login here</a>
       </p>
     </div>
   );
