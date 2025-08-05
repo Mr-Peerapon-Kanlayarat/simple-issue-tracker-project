@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Route, Link } from 'react-router-dom';
 import './index.css';
 import App from './App.jsx';
+import Layout from './components/Layout.jsx';
 import Register from './routes/Register.jsx';
 import Login from './routes/Login.jsx';
 import Home from './routes/Home.jsx';
@@ -18,12 +19,18 @@ const router = createBrowserRouter([
     element: <Register />
   },
   {
-    path: '/home',
-    element: <Home />
-  },
-  {
-    path: '/issue',
-    element: <Issue />
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '/home',
+        element: <Home />
+      },
+      {
+        path: '/issue',
+        element: <Issue />
+      }
+    ]
   }
 ]);
 
