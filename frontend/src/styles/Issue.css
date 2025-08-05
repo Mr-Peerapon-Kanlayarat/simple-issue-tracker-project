@@ -54,3 +54,9 @@
   color: #2b6cb0;
   margin-right: 6px;
 }
+
+.go-back-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
